@@ -9,6 +9,8 @@ export function worker1Num() {
     let myConstructionSite = getObjectsByPrototype(ConstructionSite).filter(s => s.my);
     let myTower = getObjectsByPrototype(StructureTower).filter(s => s.my);
     let myTower_lowpower = getObjectsByPrototype(StructureTower).find(s => s.my && s.store.getFreeCapacity(RESOURCE_ENERGY) >= 40);
+    let mySpawn = getObjectsByPrototype(StructureSpawn).find(s => s.my);
+
     //console.log("myMorker", myWorker)
     //console.log("workerFirst", workerFirst)
     //console.log("SourceMark", SourceMark)
@@ -36,6 +38,20 @@ export function worker1Num() {
         if (myTower_lowpower) {
             if (workerFirst.store.getUsedCapacity() >= 10) {
                 workerFirst.transfer(myTower_lowpower, RESOURCE_ENERGY);
+            }
+            else if (workerFirst.harvest(sourceBind, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                if (sourceBind && overMind.bindSource_pos == "左侧") {
+                    workerFirst.moveTo({ x: sourceBind.x - 1, y: sourceBind.y });
+                } else if (sourceBind && overMind.bindSource_pos == "右侧") {
+                    workerFirst.moveTo({ x: sourceBind.x + 1, y: sourceBind.y });
+                }
+            }
+        }
+
+        //Spawn能量填充逻辑
+        if (mySpawn) {
+            if (workerFirst.store.getUsedCapacity() == 50) {
+                workerFirst.transfer(mySpawn, RESOURCE_ENERGY);
             }
             else if (workerFirst.harvest(sourceBind, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 if (sourceBind && overMind.bindSource_pos == "左侧") {
