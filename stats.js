@@ -14,5 +14,6 @@ function run1Mode() {
     console.log("游戏时间：", getTicks(), "ticks")
     if (overMind.bindSource == true) {
         console.log("绑定矿点：", overMind.bindSource_x, ",", overMind.bindSource_y)
+        console.log("矿点侧边：", overMind.bindSource_pos)
     }
 }

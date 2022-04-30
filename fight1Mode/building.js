@@ -8,8 +8,15 @@ export function building() {
     //console.log("workerFirst", workerFirst)
     //console.log("sourceBind", sourceBind)
 
-    createSite();
-
-
+    //预设建筑点
+    //绑定矿点在左侧的情况
+    //console.log("sourceBind && overMind.bindSource_pos == '左侧'", sourceBind && overMind.bindSource_pos == "左侧")
+    if (sourceBind && overMind.bindSource_pos == "左侧") {
+        createSite({ x: sourceBind.x - 1, y: sourceBind.y - 1 }, StructureTower);
+        createSite({ x: sourceBind.x - 1, y: sourceBind.y + 1 }, StructureTower);
+    } else if (sourceBind && overMind.bindSource_pos == "右侧") {
+        createSite({ x: sourceBind.x + 1, y: sourceBind.y - 1 }, StructureTower);
+        createSite({ x: sourceBind.x + 1, y: sourceBind.y + 1 }, StructureTower);
+    }
 }
 
