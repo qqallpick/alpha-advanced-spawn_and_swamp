@@ -1,4 +1,5 @@
 //以下是万能头部
+//导入代码import '../importAll';
 import {
     ConstructionSite,
     Creep,
