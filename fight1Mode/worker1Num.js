@@ -23,6 +23,8 @@ export function worker1Num() {
         overMind.bindSource_y = aaa.y
         overMind.bindSource = true
         console.log('矿点绑定完成！')
+        if (aaa.x < 50) { overMind.bindSource_pos = "左侧" }
+        else if (aaa.x > 50) { overMind.bindSource_pos = "右侧" }
     }
 
     if (workerFirst) {
